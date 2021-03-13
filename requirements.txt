@@ -1,3 +1,5 @@
 pytest
 jupyter
 pylint
+bpy
+mathutils
