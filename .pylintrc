@@ -1,0 +1,24 @@
+[BASIC]
+
+#good-names=x,y,xp,yp,i,last_val,preamble_count,row_check,acc,df,old_total,new_total,col_name,catword,ocount,total,path,max_lim,test,min_lim,max_seat,min_seat,byr_flag,counter2,counter1,iyr_flag,value,eyr_flag,hgt_flag,hcl_flag,ecl_flag,pid_flag,cid_flag,filename,lncnt,validCounter,totalCounter,counter,count,flag,newcheck,col_offset,row_offset,prod_flag
+
+[SIMILARITIES]
+
+# Minimum lines number of a similarity.
+min-similarity-lines=100
+
+# Ignore comments when computing similarities.
+ignore-comments=yes
+
+# Ignore docstrings when computing similarities.
+ignore-docstrings=yes
+
+# Ignore imports when computing similarities.
+ignore-imports=no
+
+[DESIGN]
+
+max-bool-expr =10
+
+[FORMAT]
+max-line-length=100
