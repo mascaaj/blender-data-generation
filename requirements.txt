@@ -1,7 +1,4 @@
 pytest
 jupyter
 pylint
-bpy
 mathutils
-bgl
-blf
