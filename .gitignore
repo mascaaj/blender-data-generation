@@ -4,3 +4,12 @@ __pycache__/
 
 # Unit test / coverage reports
 .cache
+
+# vscode workspace
+.vscode
+
+# Blender save artifacts
+*.blend1
+
+# jupyter notebook extensions
+*ipynb_*
