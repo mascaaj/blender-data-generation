@@ -66,18 +66,21 @@ for split_name, renders_per_object in obj_renders_per_split:
         obj_to_render.hide_render = False
         
         for i in range(start_idx, start_idx+renders_per_object):
-            print(i)
-        
+            randomly_rotate_object(obj_to_render)
+            randomly_change_color(obj_to_render.material_slots[0].material)
+            
+            print(f'Rendering image {i+1} of {total_render_count}')
+            seconds_for_render = (time.time() - start_time)/(i+1)
+            seconds_remaining = ((total_render_count-i-1)*seconds_for_render)
+            print(f'Estimated time remaining : {time.strftime("%H:%M:%S", time.gmtime(seconds_remaining))}')
+            
+            bpy.context.scene.render.filepath= str(output_path / split_name / obj_name / f'{str(i).zfill(6)}.png')
+            bpy.ops.render.render(write_still=True)
+            
+        obj_to_render.hide_render = True
+
 #        Increment the start image index    
         start_idx += renders_per_object
 
-
-
-# Functions to output data
-
-#Test Functions
-#randomly_rotate_object(bpy.context.scene.objects['B'])
-#randomly_change_color(bpy.data.materials["Letter Material"])
-
-#bpy.context.scene.render.filepath = '/dev_ssd/blender/blender-data-generation/data/alphabet_data/test_render.png'
-#bpy.ops.render.render(write_still=True)
+for name in obj_names:
+    bpy.context.scene.objects[name].hide_render = False
