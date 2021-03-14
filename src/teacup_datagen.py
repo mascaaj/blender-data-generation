@@ -1,22 +1,22 @@
 """
 File to manipulate cad teacup to generate training data
 """
-import bpy
+import time
 import math
 import random
-import time
-from mathutils import Euler, Color
 from pathlib import Path
+from mathutils import Euler, Color
+import bpy
 
 def randomly_rotate_object(obj_to_change):
-    """ 
+    """
     Applies a random rotation to an object
     """
     random_rot = (0, 0, random.random() * 2 * math.pi)
     obj_to_change.rotation_euler = Euler(random_rot, 'XYZ')
 
 def randomly_change_color(material_to_change):
-    """ 
+    """
     Changes the Principled BSDF color of a material to a random color
     """
     color = Color()
@@ -25,9 +25,9 @@ def randomly_change_color(material_to_change):
     color.hsv = (hue, saturation, 1)
     rgba = [color.r, color.g, color.b, 1]
     material_to_change.node_tree.nodes["Principled BSDF"].inputs[0].default_value = rgba
-    
+
 def randomly_set_camera_position():
-    """ 
+    """
     Changes the position of the camera along 2 axes
     """
     #Generate single random value for both paths:
@@ -46,7 +46,8 @@ tea_names = ['Full', 'Half-Full', 'Mostly-Empty', 'Empty']
 obj_count = len(tea_names)
 
 # Number of images to generate of each object for each split of the dataset
-# Example: ('train', 100) means generate 100 images each of Full', 'Half-Full', 'Mostly-Empty', 'Empty' resulting in 400 training images
+# Example: ('train', 100) means generate 100 images each of Full', 'Half-Full', 
+# 'Mostly-Empty', 'Empty' resulting in 400 training images
 #obj_renders_per_split = [('train', 3)]
 obj_renders_per_split = [('train', 500), ('val', 120),('test', 25)]
 
@@ -62,7 +63,7 @@ total_render_count = sum([obj_count * r[1] for r in obj_renders_per_split])
 for name in tea_names:
     if name != 'Empty':
         bpy.context.scene.objects[name].hide_render = True
-    
+
 # Tracks the starting image index for each object loop
 start_idx = 0
 
@@ -73,7 +74,7 @@ start_time = time.time()
 for split_name, renders_per_object in obj_renders_per_split:
     print(f'Starting split: {split_name} | Total renders: {renders_per_object * obj_count}')
     print('=============================================')
-    
+
     # Loop through the objects by name
     for obj_name in tea_names:
         print(f'Starting object: {split_name}/{obj_name}')
