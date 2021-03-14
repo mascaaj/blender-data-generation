@@ -69,11 +69,11 @@ for split_name, renders_per_object in obj_renders_per_split:
             seconds_for_render = (time.time() - start_time)/(i+1)
             seconds_remaining = ((total_render_count-i-1)*seconds_for_render)
             print(' ')
-            print('EstRemaining :') 
+            print('EstRemaining :')
             print(time.strftime("%H:%M:%S", time.gmtime(seconds_remaining)))
             print(' ')
-            filePath = str(output_path / split_name / obj_name / f'{str(i).zfill(6)}.png')
-            bpy.context.scene.render.filepath= filePath
+            filepath = str(output_path / split_name / obj_name / f'{str(i).zfill(6)}.png')
+            bpy.context.scene.render.filepath= filepath
             bpy.ops.render.render(write_still=True)
             print(' ')
             print('++++++++++++++++++++++++++++++++')
