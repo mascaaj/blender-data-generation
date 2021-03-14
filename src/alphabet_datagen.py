@@ -68,17 +68,17 @@ for split_name, renders_per_object in obj_renders_per_split:
             print(f'Rendering image {i+1} of {total_render_count}')
             seconds_for_render = (time.time() - start_time)/(i+1)
             seconds_remaining = ((total_render_count-i-1)*seconds_for_render)
-            print(' ') 
+            print(' ')
             print('EstRemaining :') 
             print(time.strftime("%H:%M:%S", time.gmtime(seconds_remaining)))
-            print(' ') 
-            filepath = str(output_path / split_name / obj_name / f'{str(i).zfill(6)}.png')
-            bpy.context.scene.render.filepath= filepath
+            print(' ')
+            filePath = str(output_path / split_name / obj_name / f'{str(i).zfill(6)}.png')
+            bpy.context.scene.render.filepath= filePath
             bpy.ops.render.render(write_still=True)
-            print(' ') 
+            print(' ')
             print('++++++++++++++++++++++++++++++++')
         obj_to_render.hide_render = True
-#        Increment the start image index    
+#        Increment the start image index
         start_idx += renders_per_object
 for name in obj_names:
     bpy.context.scene.objects[name].hide_render = False
