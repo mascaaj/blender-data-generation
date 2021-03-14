@@ -1,6 +1,6 @@
 [BASIC]
 
-good-names=start_idx,obj_count,filepath
+good-names=start_idx,obj_count,filepath,r_val,cup_name,cup_obj
 [SIMILARITIES]
 
 # Minimum lines number of a similarity.
